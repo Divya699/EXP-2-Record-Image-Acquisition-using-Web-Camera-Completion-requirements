@@ -51,3 +51,60 @@ Resize the frame and rotate it using OpenCV functions, then display the processe
 ### Register No: 212225240037
 
 
+### i) Write the frame as JPG image
+```
+import cv2
+import matplotlib.pyplot as plt
+from IPython.display import clear_output
+import time
+
+cap = cv2.VideoCapture(0)
+ret, frame = cap.read()
+if ret:
+    cv2.imwrite("captured_frame.jpg", frame)
+cap.release()
+
+captured_image = cv2.imread('captured_frame.jpg')
+
+plt.imshow(captured_image[:,:,::-1])
+plt.title('Captured Frame')
+plt.axis('off')
+plt.show()
+```
+### ii) Display the video
+```
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+    time.sleep(0.05)
+
+cap.release()
+```
+### iii) Display the video by resizing the window
+``
+
+
+## Output
+
+### i) Write the frame as JPG image
+Captured image is saved as `captured_image.jpg`
+
+### ii) Display the video
+Live webcam video is displayed
+
+### iii) Display the video by resizing the window
+Video is shown in resized resolution (640 × 480)
+
+### iv) Rotate and display the video
+Video is displayed after rotation (90° clockwise)
+
+
+
